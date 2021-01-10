@@ -15,16 +15,16 @@
 
     pipelines:
       java-app:
-        group: java
+        group: services
         lock_behavior: unlockWhenFinished
-        label_template: "${java-app}"
+        label_template: "${java_app}"
         materials:
-          java-app:
-            git: https://github.com/aakacenoks/ci_pipelines.git
+          java_app:
+            git: https://github.com/mtararujs/api_tests_ci.git
             branch: main
             shallow_clone: true
             auto_update: true
-        stages: 
+        stages:
           - build:
               clean_workspace: true
               jobs:
@@ -34,7 +34,7 @@
                         command: bash
                         arguments:
                           - -c
-                          - "Building java application"
+                          - echo "Building java application"
           - deploy-dev:
               clean_workspace: true
               jobs:
@@ -44,7 +44,7 @@
                         command: bash
                         arguments:
                           - -c
-                          - "Devployment on DEV"
+                          - echo "Deployment on DEV"
           - test-dev:
               clean_workspace: true
               jobs:
@@ -54,7 +54,7 @@
                         command: bash
                         arguments:
                           - -c
-                          - "Testing on DEV"
+                          - echo "Testing on DEV"
           - deploy-int:
               clean_workspace: true
               jobs:
@@ -64,7 +64,7 @@
                         command: bash
                         arguments:
                           - -c
-                          - "Devployment on INT"
+                          - echo "Deployment on INT"
           - test-int:
               clean_workspace: true
               jobs:
@@ -74,7 +74,7 @@
                         command: bash
                         arguments:
                           - -c
-                          - "Testing on PRD"
+                          - echo "Testing on INT"
           - deploy-prd:
               clean_workspace: true
               jobs:
@@ -84,7 +84,7 @@
                         command: bash
                         arguments:
                           - -c
-                          - "Devployment on PRD"
+                          - echo "Deployment on PRD"
           - test-prd:
               clean_workspace: true
               jobs:
@@ -94,4 +94,5 @@
                         command: bash
                         arguments:
                           - -c
-                          - "Testing on PRD"
+                          - echo "Testing on PRD"
+
