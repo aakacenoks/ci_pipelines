@@ -2,7 +2,7 @@
     format_version: 2
     common:
       build: &build
-        - build-docker-image:
+        - build:
             clean_workspace: true
             jobs:
               docker-build:
