@@ -15,7 +15,7 @@
 
     pipelines:
       java-app:
-        group: dockers
+        group: java
         lock_behavior: unlockWhenFinished
         label_template: "${java-app}"
         materials:
