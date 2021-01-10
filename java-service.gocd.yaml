@@ -1,5 +1,5 @@
 ---
-    format_version: 2 
+    format_version: 2
     common:
       deploy-tasks: &deploy-tasks
         - exec:
@@ -38,7 +38,7 @@
             command: bash
             arguments:
               - -c
-              - docker rm api_test_executor_${ENV_NAME}
+              - docker rm api_test_executor_${ENV_NAME}       
 
     pipelines:
       java-app:
@@ -70,12 +70,15 @@
                 deploy:
                   tasks: *deploy-tasks
           - test-dev:
-              environment_variables:
-                ENV_NAME: dev
               clean_workspace: true
               jobs:
-                test:
-                  tasks: *test-tasks
+                build:
+                  tasks:
+                    - exec:
+                        command: bash
+                        arguments:
+                          - -c
+                          - echo "Testing on DEV"
           - deploy-int:
               environment_variables:
                 ENV_NAME: int
@@ -84,12 +87,15 @@
                 deploy:
                   tasks: *deploy-tasks
           - test-int:
-              environment_variables:
-                ENV_NAME: int
               clean_workspace: true
               jobs:
-                test:
-                  tasks: *test-tasks
+                build:
+                  tasks:
+                    - exec:
+                        command: bash
+                        arguments:
+                          - -c
+                          - echo "Testing on INT"
           - deploy-prd:
               environment_variables:
                 ENV_NAME: prd
@@ -98,10 +104,13 @@
                 deploy:
                   tasks: *deploy-tasks
           - test-prd:
-              environment_variables:
-                ENV_NAME: prd
               clean_workspace: true
               jobs:
-                test:
-                  tasks: *test-tasks
+                build:
+                  tasks:
+                    - exec:
+                        command: bash
+                        arguments:
+                          - -c
+                          - echo "Testing on PRD"
 
