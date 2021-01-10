@@ -82,6 +82,8 @@
                     - build:
                         source: report_${ENV_NAME}.html
                         destination: test-output/
+                  tabs:
+                    Report: test-output/report_${ENV_NAME}.html
                   tasks: *test-tasks
           - deploy-int:
               environment_variables:
@@ -100,6 +102,8 @@
                     - build:
                         source: report_${ENV_NAME}.html
                         destination: test-output/
+                  tabs:
+                    Report: test-output/report_${ENV_NAME}.html
                   tasks: *test-tasks
           - deploy-prd:
               environment_variables:
@@ -118,5 +122,7 @@
                     - build:
                         source: report_${ENV_NAME}.html
                         destination: test-output/
+                  tabs:
+                    Report: test-output/report_${ENV_NAME}.html
                   tasks: *test-tasks
 
