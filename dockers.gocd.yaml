@@ -4,21 +4,21 @@
     docker-base:
       group: dockers
       lock_behaviour: unlockWhenFinished
-      label_template: "${dockers}"
+      label_template: "${count}"
       materials:
         git: https://github.com/aakacenoks/ci_pipelines.git
         branch: main
         auto_update: true
         whitelist:
           - Gemfile
-      stages:
-        - build:
-          clean_workspace: true
-          jobs:
-            build-docker:
-              tasks:
-                - exec:
-                  command: bash
-                  arguments:
-                    - -c
-                    - docker build -t api_test_base . -f Dockerfile_base
+    stages:
+      - build:
+        clean_workspace: true
+        jobs:
+          build-docker:
+            tasks:
+              - exec:
+                command: bash
+                arguments:
+                  - -c
+                  - docker build -t api_test_base . -f Dockerfile_base
