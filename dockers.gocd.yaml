@@ -9,8 +9,6 @@
         git: https://github.com/mtararujs/api_tests_ci.git
         branch: main
         auto_update: true
-        whitelist:
-          - Gemfile
       stages:
         - build:
           clean_workspace: true
